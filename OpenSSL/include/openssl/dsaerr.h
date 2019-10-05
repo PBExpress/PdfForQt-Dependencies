@@ -8,8 +8,14 @@
  * https://www.openssl.org/source/license.html
  */
 
-#ifndef HEADER_DSAERR_H
-# define HEADER_DSAERR_H
+#ifndef OPENSSL_DSAERR_H
+# define OPENSSL_DSAERR_H
+# pragma once
+
+# include <openssl/macros.h>
+# if !OPENSSL_API_3
+#  define HEADER_DSAERR_H
+# endif
 
 # include <openssl/opensslconf.h>
 # include <openssl/symhacks.h>
@@ -63,6 +69,7 @@ int ERR_load_DSA_strings(void);
 #  define DSA_R_INVALID_DIGEST_TYPE                        106
 #  define DSA_R_INVALID_PARAMETERS                         112
 #  define DSA_R_MISSING_PARAMETERS                         101
+#  define DSA_R_MISSING_PRIVATE_KEY                        111
 #  define DSA_R_MODULUS_TOO_LARGE                          103
 #  define DSA_R_NO_PARAMETERS_SET                          107
 #  define DSA_R_PARAMETER_ENCODING_ERROR                   105

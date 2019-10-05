@@ -8,8 +8,14 @@
  * https://www.openssl.org/source/license.html
  */
 
-#ifndef HEADER_EVPERR_H
-# define HEADER_EVPERR_H
+#ifndef OPENSSL_EVPERR_H
+# define OPENSSL_EVPERR_H
+# pragma once
+
+# include <openssl/macros.h>
+# if !OPENSSL_API_3
+#  define HEADER_EVPERR_H
+# endif
 
 # include <openssl/opensslconf.h>
 # include <openssl/symhacks.h>
@@ -41,10 +47,6 @@ int ERR_load_EVP_strings(void);
 #  define EVP_F_ARIA_GCM_INIT_KEY                          0
 #  define EVP_F_ARIA_INIT_KEY                              0
 #  define EVP_F_B64_NEW                                    0
-#  define EVP_F_BLAKE2B_MAC_CTRL                           0
-#  define EVP_F_BLAKE2B_MAC_INIT                           0
-#  define EVP_F_BLAKE2S_MAC_CTRL                           0
-#  define EVP_F_BLAKE2S_MAC_INIT                           0
 #  define EVP_F_CAMELLIA_INIT_KEY                          0
 #  define EVP_F_CHACHA20_POLY1305_CTRL                     0
 #  define EVP_F_CMLL_T4_INIT_KEY                           0
@@ -69,10 +71,10 @@ int ERR_load_EVP_strings(void);
 #  define EVP_F_EVP_ENCRYPTDECRYPTUPDATE                   0
 #  define EVP_F_EVP_ENCRYPTFINAL_EX                        0
 #  define EVP_F_EVP_ENCRYPTUPDATE                          0
-#  define EVP_F_EVP_KDF_CTRL                               0
-#  define EVP_F_EVP_KDF_CTRL_STR                           0
+#  define EVP_F_EVP_KDF_CTX_DUP                            0
 #  define EVP_F_EVP_KDF_CTX_NEW                            0
-#  define EVP_F_EVP_KDF_CTX_NEW_ID                         0
+#  define EVP_F_EVP_KEYEXCH_FETCH                          0
+#  define EVP_F_EVP_KEYEXCH_FROM_DISPATCH                  0
 #  define EVP_F_EVP_MAC_CTRL                               0
 #  define EVP_F_EVP_MAC_CTRL_STR                           0
 #  define EVP_F_EVP_MAC_CTX_DUP                            0
@@ -100,6 +102,7 @@ int ERR_load_EVP_strings(void);
 #  define EVP_F_EVP_PKEY_DECRYPT_OLD                       0
 #  define EVP_F_EVP_PKEY_DERIVE                            0
 #  define EVP_F_EVP_PKEY_DERIVE_INIT                       0
+#  define EVP_F_EVP_PKEY_DERIVE_INIT_EX                    0
 #  define EVP_F_EVP_PKEY_DERIVE_SET_PEER                   0
 #  define EVP_F_EVP_PKEY_ENCRYPT                           0
 #  define EVP_F_EVP_PKEY_ENCRYPT_INIT                      0
@@ -164,13 +167,17 @@ int ERR_load_EVP_strings(void);
  */
 # define EVP_R_AES_KEY_SETUP_FAILED                       143
 # define EVP_R_ARIA_KEY_SETUP_FAILED                      176
+# define EVP_R_BAD_ALGORITHM_NAME                         200
 # define EVP_R_BAD_DECRYPT                                100
 # define EVP_R_BAD_KEY_LENGTH                             195
 # define EVP_R_BUFFER_TOO_SMALL                           155
 # define EVP_R_CAMELLIA_KEY_SETUP_FAILED                  157
+# define EVP_R_CANNOT_GET_PARAMETERS                      197
+# define EVP_R_CANNOT_SET_PARAMETERS                      198
 # define EVP_R_CIPHER_NOT_GCM_MODE                        184
 # define EVP_R_CIPHER_PARAMETER_ERROR                     122
 # define EVP_R_COMMAND_NOT_SUPPORTED                      147
+# define EVP_R_CONFLICTING_ALGORITHM_NAME                 201
 # define EVP_R_COPY_ERROR                                 173
 # define EVP_R_CTRL_NOT_IMPLEMENTED                       132
 # define EVP_R_CTRL_OPERATION_NOT_IMPLEMENTED             133
@@ -213,6 +220,7 @@ int ERR_load_EVP_strings(void);
 # define EVP_R_NO_CIPHER_SET                              131
 # define EVP_R_NO_DEFAULT_DIGEST                          158
 # define EVP_R_NO_DIGEST_SET                              139
+# define EVP_R_NO_KEYMGMT_AVAILABLE                       199
 # define EVP_R_NO_KEYMGMT_PRESENT                         196
 # define EVP_R_NO_KEY_SET                                 154
 # define EVP_R_NO_OPERATION_SET                           149

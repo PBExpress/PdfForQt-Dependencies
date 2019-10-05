@@ -8,8 +8,14 @@
  * https://www.openssl.org/source/license.html
  */
 
-#ifndef HEADER_ECERR_H
-# define HEADER_ECERR_H
+#ifndef OPENSSL_ECERR_H
+# define OPENSSL_ECERR_H
+# pragma once
+
+# include <openssl/macros.h>
+# if !OPENSSL_API_3
+#  define HEADER_ECERR_H
+# endif
 
 # include <openssl/opensslconf.h>
 # include <openssl/symhacks.h>
@@ -39,9 +45,14 @@ int ERR_load_EC_strings(void);
 #   define EC_F_ECDH_SIMPLE_COMPUTE_KEY                     0
 #   define EC_F_ECDSA_DO_SIGN_EX                            0
 #   define EC_F_ECDSA_DO_VERIFY                             0
+#   define EC_F_ECDSA_S390X_NISTP_SIGN_SIG                  0
+#   define EC_F_ECDSA_S390X_NISTP_VERIFY_SIG                0
 #   define EC_F_ECDSA_SIGN_EX                               0
 #   define EC_F_ECDSA_SIGN_SETUP                            0
 #   define EC_F_ECDSA_SIG_NEW                               0
+#   define EC_F_ECDSA_SIMPLE_SIGN_SETUP                     0
+#   define EC_F_ECDSA_SIMPLE_SIGN_SIG                       0
+#   define EC_F_ECDSA_SIMPLE_VERIFY_SIG                     0
 #   define EC_F_ECDSA_VERIFY                                0
 #   define EC_F_ECD_ITEM_VERIFY                             0
 #   define EC_F_ECKEY_PARAM2TYPE                            0
@@ -110,6 +121,7 @@ int ERR_load_EC_strings(void);
 #   define EC_F_EC_GFP_SIMPLE_SET_COMPRESSED_COORDINATES    0
 #   define EC_F_EC_GROUP_CHECK                              0
 #   define EC_F_EC_GROUP_CHECK_DISCRIMINANT                 0
+#   define EC_F_EC_GROUP_CHECK_NAMED_CURVE                  0
 #   define EC_F_EC_GROUP_COPY                               0
 #   define EC_F_EC_GROUP_GET_CURVE                          0
 #   define EC_F_EC_GROUP_GET_CURVE_GF2M                     0
@@ -121,6 +133,8 @@ int ERR_load_EC_strings(void);
 #   define EC_F_EC_GROUP_GET_TRINOMIAL_BASIS                0
 #   define EC_F_EC_GROUP_NEW                                0
 #   define EC_F_EC_GROUP_NEW_BY_CURVE_NAME                  0
+#   define EC_F_EC_GROUP_NEW_BY_CURVE_NAME_EX               0
+#   define EC_F_EC_GROUP_NEW_EX                             0
 #   define EC_F_EC_GROUP_NEW_FROM_DATA                      0
 #   define EC_F_EC_GROUP_NEW_FROM_ECPARAMETERS              0
 #   define EC_F_EC_GROUP_NEW_FROM_ECPKPARAMETERS            0
@@ -134,6 +148,7 @@ int ERR_load_EC_strings(void);
 #   define EC_F_EC_KEY_GENERATE_KEY                         0
 #   define EC_F_EC_KEY_NEW                                  0
 #   define EC_F_EC_KEY_NEW_METHOD                           0
+#   define EC_F_EC_KEY_NEW_METHOD_INT                       0
 #   define EC_F_EC_KEY_OCT2PRIV                             0
 #   define EC_F_EC_KEY_PRINT                                0
 #   define EC_F_EC_KEY_PRINT_FP                             0
@@ -186,6 +201,7 @@ int ERR_load_EC_strings(void);
 #   define EC_F_O2I_ECPUBLICKEY                             0
 #   define EC_F_OLD_EC_PRIV_DECODE                          0
 #   define EC_F_OSSL_ECDH_COMPUTE_KEY                       0
+#   define EC_F_OSSL_ECDSA_SIGN_SETUP                       0
 #   define EC_F_OSSL_ECDSA_SIGN_SIG                         0
 #   define EC_F_OSSL_ECDSA_VERIFY_SIG                       0
 #   define EC_F_PKEY_ECD_CTRL                               0
@@ -201,6 +217,12 @@ int ERR_load_EC_strings(void);
 #   define EC_F_PKEY_EC_KEYGEN                              0
 #   define EC_F_PKEY_EC_PARAMGEN                            0
 #   define EC_F_PKEY_EC_SIGN                                0
+#   define EC_F_S390X_PKEY_ECD_DIGESTSIGN25519              0
+#   define EC_F_S390X_PKEY_ECD_DIGESTSIGN448                0
+#   define EC_F_S390X_PKEY_ECD_KEYGEN25519                  0
+#   define EC_F_S390X_PKEY_ECD_KEYGEN448                    0
+#   define EC_F_S390X_PKEY_ECX_KEYGEN25519                  0
+#   define EC_F_S390X_PKEY_ECX_KEYGEN448                    0
 #   define EC_F_VALIDATE_ECX_DERIVE                         0
 # endif
 
@@ -214,6 +236,7 @@ int ERR_load_EC_strings(void);
 #  define EC_R_CANNOT_INVERT                               165
 #  define EC_R_COORDINATES_OUT_OF_RANGE                    146
 #  define EC_R_CURVE_DOES_NOT_SUPPORT_ECDH                 160
+#  define EC_R_CURVE_DOES_NOT_SUPPORT_ECDSA                170
 #  define EC_R_CURVE_DOES_NOT_SUPPORT_SIGNING              159
 #  define EC_R_D2I_ECPKPARAMETERS_FAILURE                  117
 #  define EC_R_DECODE_ERROR                                142
