@@ -5,7 +5,7 @@
  *   Basic WOFF/WOFF2 type definitions and interface (specification
  *   only).
  *
- * Copyright (C) 1996-2019 by
+ * Copyright (C) 1996-2020 by
  * David Turner, Robert Wilhelm, and Werner Lemberg.
  *
  * This file is part of the FreeType project, and may only be used,
@@ -21,9 +21,8 @@
 #define WOFFTYPES_H_
 
 
-#include <ft2build.h>
-#include FT_TRUETYPE_TABLES_H
-#include FT_INTERNAL_OBJECTS_H
+#include <freetype/tttables.h>
+#include <freetype/internal/ftobjs.h>
 
 
 FT_BEGIN_HEADER
@@ -179,38 +178,6 @@ FT_BEGIN_HEADER
   /**************************************************************************
    *
    * @struct:
-   *   WOFF2_InfoRec
-   *
-   * @description:
-   *   Metadata for WOFF2 font that may be required for reconstruction of
-   *   sfnt tables.
-   *
-   * @fields:
-   *   header_checksum ::
-   *     Checksum of SFNT offset table.
-   *
-   *   num_glyphs ::
-   *     Number of glyphs in the font.
-   *
-   *   num_hmetrics ::
-   *     `numberOfHMetrics` field in the 'hhea' table.
-   *
-   *   x_mins ::
-   *     `xMin` values of glyph bounding box.
-   */
-  typedef struct  WOFF2_InfoRec_
-  {
-    FT_ULong   header_checksum;
-    FT_UShort  num_glyphs;
-    FT_UShort  num_hmetrics;
-    FT_Short*  x_mins;
-
-  } WOFF2_InfoRec, *WOFF2_Info;
-
-
-  /**************************************************************************
-   *
-   * @struct:
    *   WOFF2_TableRec
    *
    * @description:
@@ -234,6 +201,51 @@ FT_BEGIN_HEADER
     FT_ULong  dst_offset;         /* uncompressed table offset */
 
   } WOFF2_TableRec, *WOFF2_Table;
+
+
+  /**************************************************************************
+   *
+   * @struct:
+   *   WOFF2_InfoRec
+   *
+   * @description:
+   *   Metadata for WOFF2 font that may be required for reconstruction of
+   *   sfnt tables.
+   *
+   * @fields:
+   *   header_checksum ::
+   *     Checksum of SFNT offset table.
+   *
+   *   num_glyphs ::
+   *     Number of glyphs in the font.
+   *
+   *   num_hmetrics ::
+   *     `numberOfHMetrics` field in the 'hhea' table.
+   *
+   *   x_mins ::
+   *     `xMin` values of glyph bounding box.
+   *
+   *   glyf_table ::
+   *     A pointer to the `glyf' table record.
+   *
+   *   loca_table ::
+   *     A pointer to the `loca' table record.
+   *
+   *   head_table ::
+   *     A pointer to the `head' table record.
+   */
+  typedef struct  WOFF2_InfoRec_
+  {
+    FT_ULong   header_checksum;
+    FT_UShort  num_glyphs;
+    FT_UShort  num_hmetrics;
+    FT_Short*  x_mins;
+
+    WOFF2_Table  glyf_table;
+    WOFF2_Table  loca_table;
+    WOFF2_Table  head_table;
+
+  } WOFF2_InfoRec, *WOFF2_Info;
 
 
   /**************************************************************************
